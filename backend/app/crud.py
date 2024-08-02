@@ -9,7 +9,7 @@ async def get_value(redis: Redis, key: str):
     return result
 
 
-async def set_value(redis: Redis, key: bytes | str | memoryview, value: int | str | list | dict):
+async def set_value(redis: Redis, key: bytes | str | memoryview, value):
     await redis.set(key, json.dumps(value))
 
 
