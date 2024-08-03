@@ -23,6 +23,6 @@ async def get_user(email: Annotated[str, Path()], redis: RedisDeps):
     return result
 
 
-@router.delete("/delete-user/{login}")
+@router.delete("/delete-user/{email}")
 async def delete_val(email: Annotated[str, Path()], redis: RedisDeps):
     await delete_value(redis, email)
