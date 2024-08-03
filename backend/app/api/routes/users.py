@@ -14,15 +14,15 @@ router = APIRouter(
 
 @router.post("/set-user/")
 async def set_user(value: Annotated[User, Body()], redis: RedisDeps):
-    await set_value(redis, value.login, dict(value))
+    await set_value(redis, value.email, dict(value))
 
 
-@router.get("/get-user/{login}")
-async def get_user(login: Annotated[str, Path()], redis: RedisDeps):
-    result = await get_value(redis, login)
+@router.get("/get-user/{email}")
+async def get_user(email: Annotated[str, Path()], redis: RedisDeps):
+    result = await get_value(redis, email)
     return result
 
 
 @router.delete("/delete-user/{login}")
-async def delete_val(login: Annotated[str, Path()], redis: RedisDeps):
-    await delete_value(redis, login)
+async def delete_val(email: Annotated[str, Path()], redis: RedisDeps):
+    await delete_value(redis, email)
