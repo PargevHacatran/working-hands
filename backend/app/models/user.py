@@ -10,4 +10,4 @@ class User(BaseModel):
     position: Annotated[str, Field(default="Плиточник", description="Должность")]
     role: Annotated[str, Field(default="worker")]
     password: str
-
+    
