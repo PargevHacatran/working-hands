@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 
 class Vacancy(BaseModel):
-    id: str
+    vacancy_id: str
     title: str
     price: str
     description: str

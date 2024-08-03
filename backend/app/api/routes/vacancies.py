@@ -22,14 +22,14 @@ async def get_vacancies(redis: RedisDeps):
     result = []
     all_values = await get_all_values(redis)
     for value in all_values:
-        if value.get("id") is not None:
+        if value.get("id") is not None or value.get("vacancy_id") is not None:
             result.append(value)
     return result
 
 
 @router.post("/set-vacancy")
 async def get_vacancy(value: Annotated[Vacancy, Body()], redis: RedisDeps):
-    vacancy_id = value.id
+    vacancy_id = value.vacancy_id
     await set_value(redis, vacancy_id, dict(value))
 
 
@@ -40,9 +40,9 @@ async def update_responses(
         redis: RedisDeps,
 ):
     vacancy = await get_value(redis, vacancy_id)
-    new_responses = vacancy["responses"]
-    new_responses.append(new_response)
 
-    vacancy["responses"] = new_responses
-
-    await set_value(redis, vacancy_id, vacancy)
+    if vacancy is not None:
+        new_responses = vacancy.get("responses")
+        new_responses.append(new_response)
+        vacancy["responses"] = new_responses
+        await set_value(redis, vacancy_id, vacancy)
