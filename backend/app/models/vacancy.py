@@ -4,7 +4,7 @@ from pydantic import BaseModel
 class Vacancy(BaseModel):
     id: str
     title: str
-    price: int
+    price: str
     description: str
     devEmail: str
     deadline: str
