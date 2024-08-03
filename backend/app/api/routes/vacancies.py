@@ -1,10 +1,11 @@
+import uuid
 from typing import Annotated
 from fastapi import APIRouter, Body, Path, HTTPException
 from starlette import status
 
 from app.api.depends import RedisDeps
 from app.crud import set_value, get_value, get_all_values
-from app.models.vacancy import Vacancy
+from app.models.vacancy import Vacancy, VacancyInDB
 
 router = APIRouter(
     prefix="/vacancies",
@@ -30,9 +31,10 @@ async def get_vacancies(redis: RedisDeps):
 
 @router.post("/set-vacancy")
 async def get_vacancy(value: Annotated[Vacancy, Body()], redis: RedisDeps):
-    vacancy_id = value.vacancy_id
-    await set_value(redis, vacancy_id, dict(value))
-    return {"result": value}
+    vacancy_id = str(uuid.uuid4())
+    vacancy_in_db = VacancyInDB(vacancy_id=vacancy_id, **dict(value))
+    await set_value(redis, vacancy_id, dict(vacancy_in_db))
+    return {"result": vacancy_in_db}
 
 
 @router.put("/update-responses/{vacancy_id}")

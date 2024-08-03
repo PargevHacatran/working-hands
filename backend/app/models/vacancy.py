@@ -2,7 +2,6 @@ from pydantic import BaseModel
 
 
 class Vacancy(BaseModel):
-    vacancy_id: str
     title: str
     price: str
     description: str
@@ -11,3 +10,6 @@ class Vacancy(BaseModel):
     responses: list[str]
     category: str
 
+
+class VacancyInDB(Vacancy):
+    vacancy_id: str
