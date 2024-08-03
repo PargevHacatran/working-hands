@@ -1,5 +1,6 @@
 from typing import Annotated
-from fastapi import APIRouter, Body, Path
+from fastapi import APIRouter, Body, Path, HTTPException
+from starlette import status
 
 from app.api.depends import RedisDeps
 from app.crud import set_value, get_value, get_all_values
@@ -42,7 +43,12 @@ async def update_responses(
     vacancy = await get_value(redis, vacancy_id)
 
     if vacancy is not None:
-        new_responses = vacancy.get("responses")
-        new_responses.append(new_response)
-        vacancy["responses"] = new_responses
-        await set_value(redis, vacancy_id, vacancy)
+        responses = vacancy.get("responses")
+        if responses is not None:
+            responses.append(new_response)
+            vacancy["responses"] = responses
+            await set_value(redis, vacancy_id, vacancy)
+        else:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="responses in vacancy is null")
+    else:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="vacancy_id not exist")
