@@ -48,6 +48,7 @@ async def update_responses(
             responses.append(new_response)
             vacancy["responses"] = responses
             await set_value(redis, vacancy_id, vacancy)
+            return {"result": vacancy}
         else:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="responses in vacancy is null")
     else:
