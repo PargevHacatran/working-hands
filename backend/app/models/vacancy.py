@@ -9,3 +9,5 @@ class Vacancy(BaseModel):
     devEmail: str
     deadline: str
     responses: list[str]
+    category: str
+
