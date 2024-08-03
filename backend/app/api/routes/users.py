@@ -15,6 +15,7 @@ router = APIRouter(
 @router.post("/set-user/")
 async def set_user(value: Annotated[User, Body()], redis: RedisDeps):
     await set_value(redis, value.email, dict(value))
+    return {"result": value}
 
 
 @router.get("/get-user/{email}")

@@ -32,6 +32,7 @@ async def get_vacancies(redis: RedisDeps):
 async def get_vacancy(value: Annotated[Vacancy, Body()], redis: RedisDeps):
     vacancy_id = value.vacancy_id
     await set_value(redis, vacancy_id, dict(value))
+    return {"result": value}
 
 
 @router.put("/update-responses/{vacancy_id}")
