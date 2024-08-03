@@ -8,5 +8,6 @@ class User(BaseModel):
     tel: Annotated[str, Field(default="9123456789")]
     name: Annotated[str, Field(default="Иванов Иван")]
     position: Annotated[str, Field(default="Плиточник", description="Должность")]
+    role: Annotated[str, Field(default="worker")]
     password: str
-
+    

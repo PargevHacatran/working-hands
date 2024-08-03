@@ -13,7 +13,8 @@ router = APIRouter(
 
 @router.post("/get-random-code")
 def get_code_authorization(number: Annotated[str, Body()]):
-    random_code = generate_random_code(code_size=4)
+    # random_code = generate_random_code(code_size=4)
+    random_code = "1111"
     text = generate_text_message(random_code=random_code)
 
     request = send_random_code(destination=number, text=text)
