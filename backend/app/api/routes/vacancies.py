@@ -37,7 +37,7 @@ async def get_vacancy(value: Annotated[Vacancy, Body()], redis: RedisDeps):
     return {"result": vacancy_in_db}
 
 
-@router.put("/update-responses/{vacancy_id}")
+@router.post("/update-responses/{vacancy_id}")
 async def update_responses(
         vacancy_id: Annotated[str, Path()],
         new_response: Annotated[str, Body(description="new_response (email)")],
