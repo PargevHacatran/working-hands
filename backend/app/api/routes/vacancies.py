@@ -58,6 +58,6 @@ async def update_responses(
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="vacancy_id not exist")
 
 
-@router.delete("/delete-vacancy/")
-async def delete_vacancy_by_id(vacancy_id: Annotated[str, Body()], redis: RedisDeps):
+@router.delete("/delete-vacancy/{vacancy_id}")
+async def delete_vacancy_by_id(vacancy_id: Annotated[str, Path()], redis: RedisDeps):
     await delete_value(redis, vacancy_id)
