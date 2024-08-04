@@ -20,8 +20,8 @@ async def get_all_values(redis: Redis):
     return result
 
 
-async def set_value(redis: Redis, key: bytes | str | memoryview, value):
-    await redis.set(key, json.dumps(value))
+async def set_value(redis: Redis, key: bytes | str | memoryview, value, expire=None):
+    await redis.set(key, json.dumps(value), ex=expire)
 
 
 async def delete_value(redis: Redis, key: str):
