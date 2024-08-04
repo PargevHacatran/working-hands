@@ -11,7 +11,7 @@ router = APIRouter(
 
 @router.post("/get-random-code")
 def get_code_authorization(number: Annotated[str, Body()]):
-    request = send_call_password(destination=number, validate=False)
+    request = send_call_password(destination=number, validate=True)
     response_body = request.json()
     print(response_body)
 
