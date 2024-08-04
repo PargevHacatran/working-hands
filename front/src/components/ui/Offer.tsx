@@ -21,7 +21,7 @@ export const Offer = ({ uid, title, price, name, description, responses, categor
     const popupRef = useRef<HTMLDivElement>();
     const role = localStorage.getItem('role');
     const email = localStorage.getItem('email');
-    const [display, setDisplay] = useState<string>('none');
+    const [display, setDsiplay] = useState<string>('none');
 
     const vacancyId = uid;
 
@@ -32,9 +32,7 @@ export const Offer = ({ uid, title, price, name, description, responses, categor
             )
             .then((resp) => console.log(resp))
             .catch((err) => console.error(err));
-
     }
-
 
     function handlePopup(e: any) {
         setRespondents([]);
@@ -44,6 +42,9 @@ export const Offer = ({ uid, title, price, name, description, responses, categor
         if (popupRef) {
             if (block?.classList.contains(styles.offer__popup))
                 block.classList.remove(styles.offer__popup);
+            else {
+                block.classList.add(styles.offer__popup);
+            }
         }
 
         responses.map(async (respoonse) => {
@@ -61,23 +62,23 @@ export const Offer = ({ uid, title, price, name, description, responses, categor
     }
 
     return (
-        <div className={styles.offer} onClick={(e: any) => handlePopup(e)} data-f={category === 'Низкоквалифицированная' ? 'low' : 'high'}>
-            <div className={styles.offer__row}>
+        <div className={styles.offer} data-f={category === 'Низкоквалифицированная' ? 'low' : 'high'}>
+            <div className={styles.offer__row} onClick={(e: any) => handlePopup(e)}>
                 <h3 className={styles.offer__title}>{title}</h3>
                 <p className={styles.offer__price}>Цена: <span>{price}&#8381;</span>/день</p>
             </div>
             <div className={styles.offer__popup} ref={popupRef}>
                 <div className={styles.offer__row}>
-                    <p className={styles.offer__description}>{description}</p>
+                    <p className={styles.offer__description} >{description}</p>
                     <div className={styles.offer__calendar}>
                         <img 
                             src="./img/calendar.png" 
                             alt="" 
                             onClick={() => {
                                 if (display !== 'flex') {
-                                    setDisplay('flex');
+                                    setDsiplay('flex');
                                 } else {
-                                    setDisplay('none');
+                                    setDsiplay('none');
                                 }
                             }} />
                     </div>
@@ -89,7 +90,7 @@ export const Offer = ({ uid, title, price, name, description, responses, categor
                 {
                     role === 'dev'
                         ? respondets.map((respondet) => (
-                            <div className={styles.respondents}>
+                            <div className={styles.respondents} onClick={(e: any) => handlePopup(e)}>
                                 <Link to={`/profile?email=${respondet.email}`}>{respondet.name}</Link>
                             </div>
                         ))

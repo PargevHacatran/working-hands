@@ -53,11 +53,6 @@ export const BuilderInfoCard = () => {
                     }
                 </ul>
             </div>
-            {
-                localStorage.getItem('role') === 'dev'
-                    ? <img src={`${localStorage.getItem('devProfileImg')}`} alt="" className={styles.main__info__company__img} />
-                    : null
-            }
         </div>
     )
 }

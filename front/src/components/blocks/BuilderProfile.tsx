@@ -7,10 +7,9 @@ export const BuilderProfile = () => {
         <div>
             <Header />
             <BuilderInfoCard />
-            <BuildCompany />
             {   
                 role === 'builder'
-                    ? null
+                    ? <BuildCompany />
                     : <BuilderReviews />
             }
         </div>
