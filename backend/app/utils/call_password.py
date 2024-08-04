@@ -10,7 +10,6 @@ def send_call_password(destination: str, validate: bool = False):
     }
     headers = {"X-Token": api_key}
     request = requests.post(url=url, json=data, headers=headers)
-    print(request.status_code)
     return request
 
 

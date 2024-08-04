@@ -16,8 +16,11 @@ def get_code_authorization(number: Annotated[str, Body()]):
     response_body = request.json()
 
     #random_code = "1111"
-    random_code = response_body["result"]["code"]
     if request.status_code == 200:
+        random_code = response_body["result"]["code"]
         return {"random_code": random_code}
     else:
-        raise HTTPException(status_code=500, detail=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        raise HTTPException(
+            status_code=500,
+            detail=f"error: {response_body["error"]["code"]}, descr: {response_body["error"]["descr"]}",
+        )
