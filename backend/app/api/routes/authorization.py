@@ -13,9 +13,9 @@ router = APIRouter(
 def get_code_authorization(number: Annotated[str, Body()]):
     request = send_call_password(destination=number, validate=False)
     response_body = request.json()
+    print(response_body)
 
-    #random_code = "1111"
-    if request.status_code == 200:
+    if request.status_code == 200 and response_body["success"]:
         random_code = response_body["result"]["code"]
         return {"random_code": random_code}
     else:
