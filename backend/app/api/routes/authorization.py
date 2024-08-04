@@ -21,5 +21,5 @@ def get_code_authorization(number: Annotated[str, Body()]):
     else:
         raise HTTPException(
             status_code=500,
-            detail=f"{response_body["error"]["descr"]}",
+            detail=response_body["error"]["descr"],
         )
