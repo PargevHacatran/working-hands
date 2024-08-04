@@ -1,0 +1,17 @@
+.auth__wrapper {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: #F4F4F4;
+}
+
+.auth__content__wrapper {
+    display: grid;
+    grid-template-columns: 35% 65%;
+}
+
+.auth__bg__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

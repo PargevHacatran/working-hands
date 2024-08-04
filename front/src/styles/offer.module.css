@@ -1,0 +1,84 @@
+.offer {
+    position: relative;
+    margin: 0 340px;
+    border: 1px solid #FFB342;
+    border-radius: 25px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.offer__row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.offer__row:last-child {
+    justify-content: start;
+    align-items: center;
+    column-gap: 15px;
+    font-size: 24px;
+    padding: 2px;
+    background-color: #fff;
+    width: 350px;
+    border-radius: 30px;
+}
+
+.offer__title {
+    color: #FFB342;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.offer__price {
+    color: #FFB342;
+    font-size: 22px;
+}
+
+.offer__price {
+    font-weight: 700;
+}
+
+.offer__description {
+    font-size: 20px;
+    width: 85%;
+}
+
+.offer__calendar {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 50%;
+    box-shadow: 2px 2px 2px #5555;
+}
+
+.offer__calendar img {
+    width: 45px;
+    height: 45px;
+}
+
+.offer__popup {
+    display: none;
+}
+
+.respondents {
+    font-size: 24px;
+}
+
+.offer__response__btn {
+    padding: 20px 50px;
+    background-color: #FFB342;
+    color: #ffff;
+    font-size: 22px;
+    margin-top: 20px;
+}
+
+.calendar {
+    display: flex;
+    background-color: #fff;
+    position: fixed;
+    z-index: 10000;
+    justify-content: flex-end;
+    right: 460px;
+    top: 250px;
+}

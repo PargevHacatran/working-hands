@@ -1,0 +1,13 @@
+.company__wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 340px;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.company__wrapper img {
+    width: 100%;
+    pointer-events: all;
+} 
