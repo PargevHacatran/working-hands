@@ -1,6 +1,5 @@
 from typing import Annotated
 from fastapi import APIRouter, Body, HTTPException
-from starlette import status
 
 from app.utils.call_password import send_call_password
 
@@ -22,5 +21,5 @@ def get_code_authorization(number: Annotated[str, Body()]):
     else:
         raise HTTPException(
             status_code=500,
-            detail=f"error: {response_body["error"]["code"]}, descr: {response_body["error"]["descr"]}",
+            detail=f"{response_body["error"]["descr"]}",
         )
